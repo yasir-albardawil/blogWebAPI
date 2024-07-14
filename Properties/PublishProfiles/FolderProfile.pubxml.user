@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\yasir\source\repos\BiteWebAPI\bin\Release\net8.0\publish\QaraWebAPI</_PublishTargetUrl>
+    <History>True|2024-07-12T14:20:18.7832045Z||;True|2024-07-12T17:17:46.8445837+03:00||;True|2024-07-12T12:41:20.4901062+03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

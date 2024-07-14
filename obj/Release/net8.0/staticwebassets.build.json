@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Ny3Hjnb2JfZMVzJlwcyOwq7crf1sTwxqLCoEcPGpPxY=",
+  "Source": "BiteWebAPI",
+  "BasePath": "_content/BiteWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
