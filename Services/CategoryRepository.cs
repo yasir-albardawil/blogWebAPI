@@ -8,9 +8,9 @@ namespace BiteWebAPI.Services
     public class CategoryRepository : ICategoryRepository
     {
 
-        private readonly BiteDbContext _context;
+        private readonly BlogDbContext _context;
 
-        public CategoryRepository(BiteDbContext context)
+        public CategoryRepository(BlogDbContext context)
         {
             _context = context;
         }

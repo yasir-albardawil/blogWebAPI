@@ -288,3 +288,12 @@ C:\Users\yasir\source\repos\BiteWebAPI\obj\Debug\net8.0\refint\BlogWebAPI.dll
 C:\Users\yasir\source\repos\BiteWebAPI\obj\Debug\net8.0\BlogWebAPI.pdb
 C:\Users\yasir\source\repos\BiteWebAPI\obj\Debug\net8.0\BlogWebAPI.genruntimeconfig.cache
 C:\Users\yasir\source\repos\BiteWebAPI\obj\Debug\net8.0\ref\BlogWebAPI.dll
+C:\Users\yasir\source\repos\BiteWebAPI\obj\Debug\net8.0\BlogWebAPI.sourcelink.json
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\Asp.Versioning.Abstractions.dll
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\Asp.Versioning.Http.dll
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\yasir\source\repos\BiteWebAPI\bin\Debug\net8.0\BlogWebAPI.xml

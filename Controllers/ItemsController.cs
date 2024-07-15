@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BiteWebAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ItemsController : ControllerBase
@@ -22,7 +25,13 @@ namespace BiteWebAPI.Controllers
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="sortOrder"></param>
+        /// <param name="includeItemsOfTheWeak"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ItemDTO>>> GetItems(string? search, string? sortOrder, bool includeItemsOfTheWeak)
         {

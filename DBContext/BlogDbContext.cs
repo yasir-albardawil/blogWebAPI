@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BiteWebAPI.DBContext
 {
-    public class BiteDbContext : DbContext
+    public class BlogDbContext : DbContext
     {
-        public BiteDbContext(DbContextOptions<BiteDbContext> options) : base(options)
+        public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
         {
 
         }

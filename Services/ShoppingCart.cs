@@ -6,13 +6,13 @@ namespace BiteWebAPI.Services
 {
     public class ShoppingCart : IShoppingCart
     {
-        private readonly BiteDbContext _context;
+        private readonly BlogDbContext _context;
 
         public string? ShoppingCartId { get; set; }
 
         public List<ShoppingCartItem> ShoppingCartItems { get; set; } = default!;
 
-        private ShoppingCart(BiteDbContext context)
+        private ShoppingCart(BlogDbContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace BiteWebAPI.Services
         {
             ISession? session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext?.Session;
 
-            BiteDbContext context = services.GetService<BiteDbContext>() ?? throw new Exception("Error initializing");
+            BlogDbContext context = services.GetService<BlogDbContext>() ?? throw new Exception("Error initializing");
 
             string cartId = session?.GetString("CartId") ?? Guid.NewGuid().ToString();
 

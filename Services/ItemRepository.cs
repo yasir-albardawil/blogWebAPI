@@ -9,9 +9,9 @@ namespace BiteWebAPI.Services
 {
     public class ItemRepository : IItemRepository
     {
-        private readonly BiteDbContext _context;
+        private readonly BlogDbContext _context;
 
-        public ItemRepository(BiteDbContext context)
+        public ItemRepository(BlogDbContext context)
         {
             _context = context;
         }

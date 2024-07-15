@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BiteWebAPI.Migrations
 {
-    [DbContext(typeof(BiteDbContext))]
+    [DbContext(typeof(BlogDbContext))]
     partial class BiteDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

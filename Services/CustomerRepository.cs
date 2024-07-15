@@ -6,9 +6,9 @@ namespace BiteWebAPI.Services
     public class CustomerRepository : ICustomerRepository
     {
 
-        private readonly BiteDbContext _pieShopDbContext;
+        private readonly BlogDbContext _pieShopDbContext;
 
-        public CustomerRepository(BiteDbContext pieShopDBContext)
+        public CustomerRepository(BlogDbContext pieShopDBContext)
         {
             _pieShopDbContext = pieShopDBContext;
         }

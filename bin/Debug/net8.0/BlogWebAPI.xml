@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlogWebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:BiteWebAPI.Controllers.ItemsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BiteWebAPI.Controllers.ItemsController.GetItems(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="search"></param>
+            <param name="sortOrder"></param>
+            <param name="includeItemsOfTheWeak"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BiteWebAPI.Migrations.IntialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.IntialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.IntialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.IntialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BiteWebAPI.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BiteWebAPI.Migrations.InsialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.InsialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.InsialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BiteWebAPI.Migrations.InsialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:BiteWebAPI.Services.CategoryRepository.AllCategories" -->
+    </members>
+</doc>

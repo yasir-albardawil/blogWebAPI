@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BiteWebAPI.Migrations
 {
-    [DbContext(typeof(BiteDbContext))]
+    [DbContext(typeof(BlogDbContext))]
     [Migration("20240706172503_IntialCreate")]
     partial class IntialCreate
     {

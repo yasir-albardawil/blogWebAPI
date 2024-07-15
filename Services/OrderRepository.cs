@@ -8,10 +8,10 @@ namespace BiteWebAPI.Services
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly BiteDbContext _pieShopDBContext;
+        private readonly BlogDbContext _pieShopDBContext;
         private readonly IShoppingCart _shoppingCart;
 
-        public OrderRepository(BiteDbContext pieShopDBContext, IShoppingCart shoppingCart)
+        public OrderRepository(BlogDbContext pieShopDBContext, IShoppingCart shoppingCart)
         {
             _pieShopDBContext = pieShopDBContext;
             _shoppingCart = shoppingCart;

@@ -1,41 +1,111 @@
-using BiteWebAPI.Controllers;
+using Asp.Versioning;
+using Asp.Versioning.ApiExplorer;
 using BiteWebAPI.DBContext;
 using BiteWebAPI.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddControllers();
-builder.Services.AddDistributedMemoryCache();
+// Add services to the container.
+builder.Services.AddControllers().AddNewtonsoftJson();
+
+builder.Services.AddApiVersioning(setupAction =>
+{
+    setupAction.ReportApiVersions = true;
+    setupAction.AssumeDefaultVersionWhenUnspecified = true;
+    setupAction.DefaultApiVersion = new ApiVersion(1, 0);
+}).AddMvc().AddApiExplorer(setupAction =>
+{
+    setupAction.SubstituteApiVersionInUrl = true;
+});
+var apiVersionDescriptionProvider = builder.Services.BuildServiceProvider()
+  .GetRequiredService<IApiVersionDescriptionProvider>();
+builder.Services.AddSwaggerGen(
+    setupAction =>
+    {
+        foreach (var description in
+        apiVersionDescriptionProvider.ApiVersionDescriptions)
+        {
+            setupAction.SwaggerDoc(
+                $"{description.GroupName}",
+                new()
+                {
+                    Title = "Blog API",
+                    Version = description.ApiVersion.ToString(),
+                    Description = "Through this API you can access cities and their points of interest."
+                });
+        }
+
+        var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+
+        setupAction.IncludeXmlComments(xmlCommentsFullPath);
+        setupAction.AddSecurityDefinition("BlogWebApiBearerAuth", new()
+        {
+            Type = SecuritySchemeType.Http,
+            Scheme = "Bearer",
+            Description = "Input a valid token to access this API"
+        });
+
+        setupAction.AddSecurityRequirement(new()
+             {
+                 {
+                     new ()
+                     {
+                         Reference = new OpenApiReference {
+                             Type = ReferenceType.SecurityScheme,
+                             Id = "BlogWebApiBearerAuth" }
+                     },
+                     new List<string>()
+                 }
+             });
 
 
+    }
+    );
+/*
+ * builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });*/
+
+builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddProblemDetails();
 builder.Services.AddAuthorization();
-
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IShoppingCart, ShoppingCart>(xx => ShoppingCart.GetCart(xx));
 
-builder.Services.AddSession();
-builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Authentication:Issuer"],
+            ValidAudience = builder.Configuration["Authentication:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(builder.Configuration["Authentication:SecretForKey"]))
+        };
+    }
+);
 
-builder.Services.AddDbContext<BiteDbContext>(options =>
+
+builder.Services.AddDbContext<BlogDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DbContextConnection")));
-
-//builder.Services.AddDefaultIdentity<IdentityUser>(option => option.SignIn.RequireConfirmedEmail = true)
-//    .AddRoles<IdentityRole>()
-//    .AddEntityFrameworkStores<BiteDbContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -44,17 +114,39 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(setupAction =>
+    {
+        var descriptions = app.DescribeApiVersions();
+        foreach (var description in descriptions)
+        {
+            setupAction.SwaggerEndpoint(
+                $"/swagger/{description.GroupName}/swagger.json",
+                description.GroupName.ToUpperInvariant());
+        }
+    });
 }
 
+if (app.Environment.IsProduction())
+{
+    app.UseExceptionHandler();
+    app.UseSwagger();
+    app.UseSwaggerUI(setupAction =>
+    {
+        var descriptions = app.DescribeApiVersions();
+        foreach (var description in descriptions)
+        {
+            setupAction.SwaggerEndpoint(
+                $"/swagger/{description.GroupName}/swagger.json",
+                description.GroupName.ToUpperInvariant());
+        }
+    });
+}
 
 app.UseHttpsRedirection();
-
+app.UseAuthorization();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseSession();
 
 //using (var scope = app.Services.CreateScope())
 //{
@@ -97,5 +189,4 @@ app.UseSession();
 //        }
 //    }
 //}
-
 app.Run();
